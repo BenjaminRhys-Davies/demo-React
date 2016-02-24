@@ -1,6 +1,11 @@
+var gutil = require('gulp-util');
+
 var dest = './dist';
 var src = './src';
-var gutil = require('gulp-util');
+var maps = './maps';
+
+var presentation = src + '/presentation';
+var behaviour = src + '/behaviour';
 
 module.exports = {
   server: {
@@ -14,23 +19,32 @@ module.exports = {
     }
   },
   sass: {
-    src: src + '/presentation/index.scss',
-    all: [ src + '/presentation/*.scss', src + '/presentation/*/*.scss', '!' + src + '/presentation/_reset.scss' ],
+    src: presentation+ '/index.scss',
+    all: [ presentation + '/*.scss', presentation + '/*/*.scss', '!' + presentation + '/_reset.scss' ],
     dest: dest,
     settings: {
       indentedSyntax: false,
       imagePath: '/images',
       outputStyle: 'compressed'
-    }
+    },
+    sourceRoot: presentation,
+    mapsDest: maps
   },
   browserify: {
     settings: {
-      transform: ['reactify', 'babelify']
+      transformations: [
+        { transform: 'reactify' },
+        { transform: 'babelify', opts: { presets: ['es2015', 'react'] }}
+      ]
     },
-    src: src + '/behaviour/index.jsx',
+    src: behaviour + '/index.jsx',
     dest: dest,
     outputName: 'index.js',
-    debug: gutil.env.type === 'dev'
+    debug: gutil.env.type === 'dev',
+    maps: {
+      opts: { sourceRoot: behaviour },
+      dest: maps
+    }
   },
   html: {
     src: 'src/index.html',
