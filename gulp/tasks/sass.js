@@ -10,7 +10,7 @@ gulp.task('sass', function () {
       .pipe(sassGlob())
       .pipe(sourcemaps.init())
       .pipe(sass(config.settings))
-      .pipe(sourcemaps.write(config.mapsDest, { sourceRoot: config.sourceRoot }))
+      .pipe(sourcemaps.write(config.maps.dest, config.maps.opts))
       .pipe(gulp.dest(config.dest))
       .pipe(connect.reload());
 });

@@ -63,8 +63,8 @@ linters:
     max_depth: 3
 
   SelectorFormat:
-    enabled: true,
-    convention: strict_BEM
+    enabled: true
+    convention: hyphenated_BEM
 
   Shorthand:
     enabled: false

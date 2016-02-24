@@ -1,13 +1,13 @@
 @mixin chevron() {
-  position: absolute;
-  display: inline-block;
-  vertical-align: bottom;
-  color: $color-chevron;
-  top: 0;
-  padding: 0 .4rem;
-  content: '>';
+    position: absolute;
+    display: inline-block;
+    vertical-align: bottom;
+    color: $color-chevron;
+    top: 0;
+    padding: 0 .4rem;
+    content: '>';
 
-  @include layout-modifiers(rtl) {
-    content: '<';
-  }
+    @include layout-modifiers(rtl) {
+        content: '<';
+    }
 }

@@ -27,8 +27,14 @@ module.exports = {
       imagePath: '/images',
       outputStyle: 'compressed'
     },
-    sourceRoot: presentation,
-    mapsDest: maps
+    maps: {
+      opts: { sourceRoot: presentation },
+      dest: maps
+    },
+    lint: {
+      config: './gulp/tasks/scss-lint.yml',
+      reporterOutput: 'scss-lint-report.xml'
+    }
   },
   browserify: {
     settings: {

@@ -1,80 +1,79 @@
 // BLOCK: comment
 .comment {
-  background-color: $background-color;
-  border-radius: 1rem;
-  margin: 0 0 1rem;
-  padding: 1rem;
+    background-color: $background-color;
+    border-radius: 1rem;
+    margin: 0 0 1rem;
+    padding: 1rem;
 
-  &:nth-child(even) {
-    background-color: $background-color-alternating;
-  }
+    &:nth-child(even) {
+        background-color: $background-color-alternating;
+    }
 
-  &:empty,
-  :empty {
-    display: none;
-  }
+    &:empty,
+    :empty {
+        display: none;
+    }
 }
 
 
 // ELEMENTS
 .comment__quote {
-  display: table;
-  margin: 0;
-  width: 100%;
+    display: table;
+    margin: 0;
+    width: 100%;
 
-  p {
-    font-size: .8rem;
-    line-height: 1.4rem;
-    margin: 0 0 .8rem;
+    p {
+        font-size: .8rem;
+        line-height: 1.4rem;
+        margin: 0 0 .8rem;
 
-    &:last-child {
-      margin-bottom: .5rem;
+        &:last-child {
+            margin-bottom: .5rem;
+        }
     }
-  }
-
 }
 
 .comment__author {
-  color: $color-author;
-  font-size: 1.3rem;
-  font-weight: 900;
-  padding: 0 0 .5rem;
+    color: $color-author;
+    font-size: 1.3rem;
+    font-weight: 900;
+    padding: 0 0 .5rem;
 }
 
 .comment__authorlink {
-  position: relative;
+    position: relative;
 
-  &:hover:after {
-    @include chevron;
-  }
-
-  .comment--currentuser & {
-    &:before {
-      color: $color-currentuser;
-      content: 'Me';
-      display: inline-block;
+    &:hover::after {
+        @include chevron;
     }
 
-    &:after {
-      content: '';
-    }
+    .comment--currentuser & {
+        &::before {
+            color: $color-currentuser;
+            content: 'Me';
+            display: inline-block;
+        }
 
-    cite {
-      display: none;
+        &::after {
+            content: '';
+        }
+
+        cite {
+            display: none;
+        }
     }
-  }
 }
 
 .comment__date {
-  @include rtl-invert(text-align, right);
-  color: $color-date;
-  display: table-footer-group;
-  font-size: .8rem;
+    @include rtl-invert(text-align, right);
+    color: $color-date;
+    display: table-footer-group;
+    font-size: .8rem;
 }
 
 
 // MODIFIERS
 .comment--currentuser {
-  @include box-shadow;
-  background-color: $background-color-currentuser;
+    @include box-shadow;
+    background-color: $background-color-currentuser;
 }

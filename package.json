@@ -10,6 +10,7 @@
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "gulp": "^3.9.1",
+    "gulp-cached": "^1.1.0",
     "gulp-connect": "^2.3.1",
     "gulp-sass": "^2.2.0",
     "gulp-sass-glob": "0.0.8",

@@ -59,7 +59,7 @@ const Comment = React.createClass({
         };
 
         return (
-            <li key='comment' {...props}>
+            <li key='comment__item' {...props}>
                 <blockquote {...quoteProps}>
                     { this._renderAuthor() }
                     { this._renderDateTime() }

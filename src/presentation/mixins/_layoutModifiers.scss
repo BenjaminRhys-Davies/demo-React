@@ -1,16 +1,16 @@
 // Receives a comma-separated list of modifiers, as defined below
 @mixin layout-modifiers($modifiers...) {
-  $selector: '';
+    $selector: '';
 
-  @if contains($modifiers, ltr) {
-    $selector: $selector + '[dir=ltr]';
-  }
+    @if contains($modifiers, ltr) {
+        $selector: $selector + '[dir=ltr]';
+    }
 
-  @if contains($modifiers, rtl) {
-    $selector: $selector + '[dir=rtl]';
-  }
+    @if contains($modifiers, rtl) {
+        $selector: $selector + '[dir=rtl]';
+    }
 
-  #{$selector} & {
-    @content
-  }
+    #{$selector} & {
+        @content
+    }
 }
