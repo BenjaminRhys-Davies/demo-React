@@ -1,6 +1,6 @@
-const React = require('react');
-const Comments = require('./components/comments.jsx');
+'use strict';
 
-React.render(<section>
-    <Comments key='comments' />
-</section>, document.getElementById('main'));
+const React = require('react');
+const Discussion = require('./components/discussion.jsx');
+
+React.render(<Discussion />, document.getElementById('main'));

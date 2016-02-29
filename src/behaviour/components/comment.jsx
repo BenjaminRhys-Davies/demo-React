@@ -1,21 +1,26 @@
 'use strict';
 
 const React = require('react');
+const classnames = require('classnames');
+
+const formatDateString = (dateStr) => (new Date(dateStr)).toLocaleDateString(undefined, {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+});
 
 const Comment = React.createClass({
 
     displayName: 'Comment',
 
     propTypes: {
-        currentuser: React.PropTypes.bool,
         user: React.PropTypes.shape({
             link: React.PropTypes.string,
-            name: React.PropTypes.string,
+            name: React.PropTypes.string.isRequired,
+            type: React.PropTypes.oneOf(['current', 'anon']),
         }),
-        date: React.PropTypes.shape({
-            timestamp: React.PropTypes.string,
-            friendly: React.PropTypes.string,
-        }),
+        date: React.PropTypes.string,
         comment: React.PropTypes.oneOfType([
             React.PropTypes.string,
             React.PropTypes.arrayOf(React.PropTypes.string),
@@ -23,12 +28,12 @@ const Comment = React.createClass({
     },
 
     _renderAuthor () {
-        const { user } = this.props;
-        const author = <cite>{ user.name }</cite>;
+        const { name, link } = this.props.user;
+        const author = <cite>{ name }</cite>;
 
-        return user.name ? (
+        return name ? (
             <h3 key='author' className='comment__author'>
-                { user.link ? <a href={ user.link } className='comment__authorlink'>{ author }</a> : author }
+                { link ? <a href={ link } className='comment__authorlink'>{ author }</a> : author }
             </h3>
         ) : null;
     },
@@ -37,7 +42,7 @@ const Comment = React.createClass({
         const { date } = this.props;
         return (
             <div key='date' className='comment__date'>
-                <time dateTime={ date.timestamp }>{ date.friendly }</time>
+                <time dateTime={ date }>{ formatDateString(date) }</time>
             </div>
         );  
     },
@@ -49,17 +54,18 @@ const Comment = React.createClass({
     },
 
     render () {
-        const { user, currentuser } = this.props;
+        const { link, type } = this.props.user;
         const quoteProps = {
             className: 'comment__quote',
-            cite: user.link,
+            cite: link,
         }
-        const props = {
-            className: 'comment' + (currentuser ? ' comment--currentuser' : '')
-        };
+        const classes = classnames('comment', {
+            'comment--anonuser': type === 'anon',
+            'comment--currentuser': type === 'current',
+        });
 
         return (
-            <li key='comment__item' {...props}>
+            <li key='comment__item' className={ classes }>
                 <blockquote {...quoteProps}>
                     { this._renderAuthor() }
                     { this._renderDateTime() }
