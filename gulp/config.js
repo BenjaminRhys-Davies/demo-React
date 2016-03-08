@@ -19,7 +19,7 @@ module.exports = {
     }
   },
   sass: {
-    src: presentation+ '/index.scss',
+    src: presentation + '/index.scss',
     all: [ presentation + '/*.scss', presentation + '/*/*.scss', '!' + presentation + '/_reset.scss' ],
     dest: dest,
     settings: {
@@ -40,7 +40,7 @@ module.exports = {
     settings: {
       transformations: [
         { transform: 'reactify' },
-        { transform: 'babelify', opts: { presets: ['es2015', 'react'] }}
+        { transform: 'babelify', opts: { presets: ['es2015', 'react'] } }
       ]
     },
     src: behaviour + '/index.jsx',

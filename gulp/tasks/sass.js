@@ -6,11 +6,11 @@ var sassGlob = require('gulp-sass-glob');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('sass', function () {
-   gulp.src(config.src)
-      .pipe(sassGlob())
-      .pipe(sourcemaps.init())
-      .pipe(sass(config.settings))
-      .pipe(sourcemaps.write(config.maps.dest, config.maps.opts))
-      .pipe(gulp.dest(config.dest))
-      .pipe(connect.reload());
+  gulp.src(config.src)
+  .pipe(sassGlob())
+  .pipe(sourcemaps.init())
+  .pipe(sass(config.settings))
+  .pipe(sourcemaps.write(config.maps.dest, config.maps.opts))
+  .pipe(gulp.dest(config.dest))
+  .pipe(connect.reload());
 });
